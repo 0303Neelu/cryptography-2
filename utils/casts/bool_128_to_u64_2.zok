@@ -1,0 +1,6 @@
+import "./bool_array_to_u64_array" as bool_to_u64;
+
+def main(bool[128] bits) -> u64[2] {
+    u64[2] res = bool_to_u64(bits);
+    return res;
+}

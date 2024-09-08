@@ -1,0 +1,10 @@
+import "./sha512" as sha512;
+
+// A function that takes 4 u32[8] arrays as inputs, concatenates them,
+// and returns their sha256 compression as a u32[8].
+// Note: no padding is applied
+
+def main(u64[8] a, u64[8] b, u64[8] c, u64[8] d, u64[8] e, u64[8] f, u64[8] g, u64[8] h) -> u64[8] {
+    u64[8] res = sha512([[...a, ...b], [...c, ...d], [...e, ...f], [...g, ...h]]);
+    return res;
+}

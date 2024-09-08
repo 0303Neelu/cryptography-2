@@ -1,0 +1,33 @@
+import "./2048bit" as sha512;
+
+// A function that takes four u32[8] array as input, concatenates them, pads the result,
+// and returns the sha256 output as a u32[8]
+def main(u64[8] a, u64[8] b, u64[8] c, u64[8] d, u64[8] e, u64[8] f, u64[8] g, u64[8] h) -> u64[8] {
+
+    // Hash is computed on the full 1024bit block size
+    // padding does not fit in the first two blocks
+    // add dummy block (single "1" followed by "0" + total length)
+    u64[8] dummyblock1 = [ \
+        0x80000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000
+    ];
+
+    u64[8] dummyblock2 = [ \
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000000,
+        0x00000400
+    ];
+
+    return sha512(a, b, c, d, dummyblock1, dummyblock2);
+}
